@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @pessoa.nome %>
+</p>
+
+<p>
+  <strong>Idade:</strong>
+  <%= @pessoa.idade %>
+</p>
+<p>
+  <strong>Endereco:</strong>
+  <%= @pessoa.endereco %>
+
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@pessoa.latitude}%2C#{@pessoa.longitude}"  %>
+
+
+<%= link_to 'Voltar', root_path , {:class => 'btn'}%>

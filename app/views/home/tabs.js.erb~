@@ -1,0 +1,11 @@
+$('.nav-tabs').append('<li class = "active"><%= link_to "Inicial", "#Inicial" , { :role=>"tab","data-toggle" => "tab", :remote => true} %></li>');
+$('.tab-content').append('<div id="Inicial" class="tab-pane active">As abas seguintes mostram lugares de seu interesse</div>');
+<% current_user.pessoa.interesses.each do |i|%>
+$('.nav-tabs').append('<li><%= link_to i.descricao.capitalize, "##{i.descricao.downcase}" , { :role=>"tab","data-toggle" => "tab", :remote => true} %></li>');
+$('.tab-content').append('<div id="<%= i.nome.downcase %>" class="tab-pane"><div id="spot<%= i.id%>"><%= escape_javascript(render :partial => 'locais', :locals => {:interesse => i.nome} )%></div></div>');
+
+
+<%end%>
+
+
+

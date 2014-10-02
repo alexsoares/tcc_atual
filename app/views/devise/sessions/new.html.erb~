@@ -1,0 +1,31 @@
+<h1 align=center>TCC - UNISAL</h1>
+
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Login</h4>
+            </div>
+            <div class="modal-body">
+                <!-- The form is placed inside the body of modal -->
+		<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+		  <div>
+		    <%= f.label :email %><br />
+		    <%= f.email_field :email, autofocus: true %>
+                  </div>
+                  <div>
+                    <%= f.label :password %><br />
+                    <%= f.password_field :password, autocomplete: "off" %>
+                  </div>
+		  <% if devise_mapping.rememberable? -%>
+		    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+		  <% end -%>
+		  <div><%= f.submit "Entrar" %></div>
+		<% end %>
+		<%= render "devise/shared/links" %>
+            </div>
+        </div>
+    </div>
+</div>
+

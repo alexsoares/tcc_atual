@@ -1,0 +1,27 @@
+<%if user_signed_in?%>
+<% if current_user.pessoa.present?%>
+  <h1 align=center>Você está aqui:</h1>
+  <div align=center>
+  <%= current_user.pessoa.endereco%>
+  
+    <%= image_tag "http://maps.google.com/maps/api/staticmap?size=640x400&sensor=false&zoom=16&markers=#{current_user.pessoa.latitude}%2C#{current_user.pessoa.longitude}"  %>
+    <%= form_tag(home_tabs_path, :method => 'get', :remote => true, :'data-update-target' => 'update-   container') do %>
+  </div> 
+   <p>
+     <%= submit_tag 'Localizar locais proximos', :disable_with => 'Please wait...',:id => 'locais', :class => 'btn btn-primary' %>
+    </p>
+  <% end %>
+<%else%>
+<p><%= ("Realize o cadastro. #{link_to "Clique Aqui", new_pessoa_path}").html_safe%></p>
+<%end%>
+<br/>
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="active"><a href="#home" role="tab" data-toggle="tab">Home</a></li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="home">
+	Aguarde ...
+      </div>
+    </div>
+<%end%>
+

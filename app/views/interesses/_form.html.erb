@@ -1,0 +1,32 @@
+<%= form_for(@interess) do |f| %>
+  <% if @interess.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@interess.errors.count, "error") %> prohibited this interess from being saved:</h2>
+
+      <ul>
+      <% @interess.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nome %><br>
+    <%= f.text_field :nome %>
+  </div>
+  <div class="field">
+    <%= f.label :descricao %><br>
+    <%= f.text_area :descricao %>
+  </div>
+  <% for type in Place.all %>
+      <tr>
+        <td><%= check_box_tag "interess[place_ids][]", type.id, @interess.places.include?(type) %>
+        </td>
+        <td><%= type.nome %></td>
+      </tr>
+  <% end %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

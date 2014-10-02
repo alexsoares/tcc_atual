@@ -1,0 +1,20 @@
+  <% if user_signed_in? %>
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1">
+        Conta <b class="caret"></b>
+      </a>
+
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+	<% if current_user.pessoa.present? %>
+	<li role = "presentation" class="dropdown-header"><%= link_to "Interesses", edit_pessoa_path(current_user.pessoa) %></li>
+	<%end%>
+        <li role="presentation" class="dropdown-header"><%= link_to "Perfil", edit_user_registration_path %></li>
+	<li role="presentation" class="dropdown-header"><%= link_to "Sair", destroy_user_session_path, :method => :delete %></li>
+        
+      </ul>
+    </li>
+</div>    
+  <% else %>
+    <li role="presentation" class="dropdown-header"><%= link_to "Entrar", '#loginModal',{"data-toggle" => "modal", "data-target" => "#loginModal"}  %></li>
+  <% end %>
+

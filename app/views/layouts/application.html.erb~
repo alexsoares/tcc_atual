@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "TCC" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "TCC" %>">
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <%= yield(:head) %>
+  </head>
+  <body class="<%= controller_name %> <%= action_name %>">
+    <header>
+      <%= render 'layouts/navigation' %>
+    </header>   
+    <div id="main" role="main">
+      <div class="container">
+        <div class="content">
+           <div class="row">
+            <div class="span12">
+              <%= render 'layouts/messages' %>
+              <%= yield %>
+	      <p>
+	       <div id="responsive" class="modal fade" tabindex="-1" data-width="760" style="display: none;">
+    	       <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+               </div>
+               <div class="modal-body">
+                 <div class="row">
+                   <div class="col-md-6">
+                     <div>
+                       <div id="map-container">
+	                 <div id="map-canvas"></div>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+                 <div class="modal-footer">
+                   <button type="button" data-dismiss="modal" class="btn btn-default">Fechar</button>
+                 </div>
+               </div>
+              </p>
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Login</h4>
+            </div>
+
+            <div class="modal-body">
+                <!-- The form is placed inside the body of modal -->
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+            </div>
+           </div>
+           <footer>
+           </footer>
+        </div>
+      </div> <!--! end of .container -->
+    </div> <!--! end of #main -->
+  </body>
+</html>
+

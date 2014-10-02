@@ -1,0 +1,41 @@
+<%= form_for(@pessoa) do |f| %>
+  <% if @pessoa.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pessoa.errors.count, "error") %> impediram este registro de ser salvo:</h2>
+
+      <ul>
+      <% @pessoa.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nome %><br>
+    <%= f.text_field :nome, {'data-provide'=>"typeahead", :placeholder => "Digite o nome", :size => 40} %>
+  </div>
+  <div class="field">
+    <%= f.label :idade %><br>
+    <%= f.number_field :idade, 'data-provide'=>"typeahead", :placeholder => "Informe sua Idade" %>
+  </div>
+  <div class="field">
+    <%= f.label :endereco %><br>
+    <%= f.text_field :endereco, 'data-provide'=>"typeahead", :placeholder => "Informe seu endereço <Nome Rua nº, Cidade, UF>", :size => 70 %>
+  </div>
+
+<table class="tabelas">
+<th colspan="2" style=" font-size: large; color: blue">Interesses</th>
+<% Interess.all.in_groups_of(5, false) do |row_interesses| %>
+<tr>
+<% row_interesses.each do |interesse| %>
+<td><%= check_box_tag "pessoa[interess_ids][]", interesse.id, @pessoa.interesses.include?(interesse) %> <%= interesse.descricao %></td>
+<% end %>
+</tr>
+<%end%>
+</table>
+
+  <div class="actions">
+    <%= f.submit "Salvar", :class => "btn"%>
+  </div>
+<% end %>

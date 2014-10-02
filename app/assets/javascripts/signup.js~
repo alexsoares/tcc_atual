@@ -1,0 +1,2 @@
+      $("#SignUp").click(function(){
+        $('#signupModal').modal();

@@ -1,6 +1,30 @@
-<p align=center>
-<h1><%= nome.capitalize %></h1>
-<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{latitude}%2C#{longitude}"  %>
-<h3><%= endereco %></h3>
+<p>
+  <b>Nome estabelecimento: </b>
+  <%= @nome%>
+</p>
+<p>
+  <b>Endereço: </b>
+  <%= @rua %>
 </p>
 
+<h1 align=center> Como você avalia este lugar</h1>
+<br/>
+     <%= form_tag new_place_path , :remote => true do %>
+      <p>
+        <%= hidden_field_tag :nome, @nome%>
+	<%= hidden_field_tag :pessoa, current_user.pessoa%>
+        <%= radio_button_tag(:nota, "5") %>
+        <%= label_tag(:nota_5, "5") %>
+        <%= radio_button_tag(:nota, "6") %>
+        <%= label_tag(:nota_6, "6") %>
+        <%= radio_button_tag(:nota, "7") %>
+        <%= label_tag(:nota_7, "7") %>
+        <%= radio_button_tag(:nota, "8") %>
+        <%= label_tag(:nota_8, "8") %>
+        <%= radio_button_tag(:nota, "9") %>
+        <%= label_tag(:nota_9, "9") %>
+        <%= radio_button_tag(:nota, "10") %>
+        <%= label_tag(:nota_10, "10") %>
+      </p>
+      <%= submit_tag "Avaliar", class: "btn btn-large btn-primary" %>
+    <% end %>

@@ -13,15 +13,65 @@
  *= require_tree .
  *= require_self
  */
-.content {
-  background-color: #eee;
-  padding: 20px;
-  margin: 0 -20px; /* indenta o padding negativo para preservar o grid */
-  -webkit-border-radius: 0 0 6px 6px;
-  -moz-border-radius: 0 0 6px 6px;
-  border-radius: 0 0 6px 6px;
-  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-  box-shadow: 0 1px 2px rgba(0,0,0,.15);
+
+.local {  height: 450px; border-radius: 16px 16px; border-color: #fff; border-style: solid; box-shadow: 2px 2px 10px #B1B1B1; border-width: 7px; }
+
+#sug-left{
+  
+    width:450px;
+    height:400px;
+    float:left;
+    background-color: yellow;
+    }
+#sug-right{
+    width:450px;
+    height:400px;
+    float:left;
+    /* Cor de fundo da div */
+    background-color:#F00;
+    }
+
+#conteudo-left{
+    /*Novamente definimos a largura da div*/
+    width:500px;
+    /* altura da div */
+    height:400px;
+    /* O atributo Float é utilizado para fazermos o nosso bloco(div) literalmente flutue e se posicione onde queremos na página, quando escolhemos left, dizemos que esse bloco irá se posicionar na parte esquerda da página */
+    float:left;
+    /* Cor de fundo da div */
+    background-color:#FF0;
+    }
+#conteudo-right{
+    /*Novamente definimos a largura da div*/
+    width:500px;
+    /* altura da div */
+    height:400px;
+    /* Pode parecer meio estranho usarmos o mesmo atributo left para o bloco em que queremos posicionar na direita, mas como sabemos, o css é um estilo em cascata, nossa div conteúdo definimos a largura de 1000px e na conteudo-left 500px,
+automaticamente ao definirmos o conteudo-right com 500px e à esquerda também, ele ficou à direita do conteudo-left, pois o máximo que a div filha poderá ter é 1000px, sendo 500+500=1000px */
+    float:left;
+    /* Cor de fundo da div */
+    background-color:#F00;
+    }
+
+.alert {
+padding: 8px 35px 8px 14px;
+margin-bottom: 18px;
+color: #c09853;
+text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+background-color: #fcf8e3;
+border: 1px solid #fbeed5;
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
 }
 
+.alert-heading {
+color: inherit;
+}
+
+.alert .close {
+position: relative;
+top: -2px;
+right: -21px;
+line-height: 18px;
+}

@@ -20,10 +20,13 @@
     <%= f.number_field :idade, 'data-provide'=>"typeahead", :placeholder => "Informe sua Idade" %>
   </div>
   <div class="field">
-    <%= f.label :endereco %><br>
-    <%= f.text_field :endereco, 'data-provide'=>"typeahead", :placeholder => "Informe seu endereço <Nome Rua nº, Cidade, UF>", :size => 70 %>
+    <%= f.label :cep %><br>
+    <%= f.text_field :cep, 'data-provide'=>"typeahead", :placeholder => "Informe o CEP", :size => 20 %>
   </div>
-
+  <div class="field">
+    <%= f.label :numero %><br>
+    <%= f.text_field :numero, 'data-provide'=>"typeahead", :placeholder => "Nº", :size => 20 %>
+  </div>
 <table class="tabelas">
 <th colspan="2" style=" font-size: large; color: blue">Interesses</th>
 <% Interess.all.in_groups_of(5, false) do |row_interesses| %>

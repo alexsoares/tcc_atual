@@ -11,15 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141001155538) do
+ActiveRecord::Schema.define(version: 20141008222338) do
 
   create_table "avaliacaos", force: true do |t|
-    t.integer  "pessoa_id"
+    t.string   "nome"
+    t.float    "longitude",  limit: 24
+    t.float    "latitude",   limit: 24
+    t.float    "nota",       limit: 24
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "avaliacaos", ["pessoa_id"], name: "index_avaliacaos_on_pessoa_id", using: :btree
 
   create_table "interesses", force: true do |t|
     t.string   "nome"
@@ -50,6 +51,7 @@ ActiveRecord::Schema.define(version: 20141001155538) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "numero"
   end
 
   add_index "pessoas", ["user_id"], name: "index_pessoas_on_user_id", using: :btree
@@ -58,8 +60,11 @@ ActiveRecord::Schema.define(version: 20141001155538) do
     t.string   "tipo"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "latitude",   precision: 10, scale: 0
-    t.decimal  "longitude",  precision: 10, scale: 0
+    t.decimal  "latitude",              precision: 10, scale: 0
+    t.decimal  "longitude",             precision: 10, scale: 0
+    t.string   "nome"
+    t.integer  "pessoa_id"
+    t.float    "nota",       limit: 24
   end
 
   create_table "products", force: true do |t|

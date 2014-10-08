@@ -1,10 +1,7 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Nome:</strong>
   <%= @pessoa.nome %>
 </p>
-
 <p>
   <strong>Idade:</strong>
   <%= @pessoa.idade %>
@@ -12,8 +9,68 @@
 <p>
   <strong>Endereco:</strong>
   <%= @pessoa.endereco %>
+</p>
+    <%= hidden_field_tag "search_box_geocoding", "#{current_user.pessoa.endereco}" %>
 
-<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@pessoa.latitude}%2C#{@pessoa.longitude}"  %>
+    <br/>
+    <br/>
+    <div id="map-container">
+	<div id="map-canvas"></div>
+    </div>
+    <br/>
+      <%= form_tag(home_tabs_path, :method => 'get', :remote => true, :'data-update-target' => 'update-   container') do %>
+       <p>
+       <%= submit_tag 'Localizar locais proximos', :disable_with => 'Please wait...',:id => 'locais', :class => 'btn btn-primary' %>
+       <button id = "limpar" type="button" disabled class = 'btn btn-primary' >Limpar busca</button>
+       </p>
+      <% end %> 
+  <div class = 'local' >
+    <ul id='lista' class="nav nav-tabs" role="tablist">
 
+    </ul>
+    <div id = 'content' class="tab-content">
+    </div>
+  </div>
 
-<%= link_to 'Voltar', root_path , {:class => 'demo btn btn-primary btn-lg'}%>
+<script>
+$( document ).ready(function() {
+  var mapOptions = {
+          center: new google.maps.LatLng(-22.90556, -47.06083),
+          zoom: 12,
+          mapTypeId: google.maps.MapTypeId.NORMAL,
+          panControl: true,
+          scaleControl: false,
+          streetViewControl: true,
+          overviewMapControl: true
+        };
+        // initializing map
+        map = new google.maps.Map(document.getElementById("map-canvas"),mapOptions);
+	
+        
+   // geocoding 
+      var geocoding  = new google.maps.Geocoder();
+      $("#limpar").click(function(){
+	document.getElementById("limpar").disabled = true;
+	document.getElementById("locais").disabled = false;
+	$('#content').html('');
+	$('#lista').html(''); 
+      });
+      $("#locais").click(function(){
+	document.getElementById("limpar").disabled = false;
+	document.getElementById("locais").disabled = true;
+        
+      });
+      $("#submit_button_geocoding").click(function(){
+        
+      });
+      $("#submit_button_reverse").click(function(){
+        codeLatLng(geocoding);
+      });
+  
+ $('#sug-body').html("<%= escape_javascript(render :partial => '/home/sugestao')%>");
+ setTimeout(function(){$('#myModalSug').modal();}, 1000);  
+ setTimeout(function(){codeAddress(geocoding)}, 500);
+
+});
+
+</script>

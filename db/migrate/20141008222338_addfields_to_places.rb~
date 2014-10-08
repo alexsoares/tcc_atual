@@ -1,0 +1,4 @@
+class AddfieldsToPlaces < ActiveRecord::Migration
+  def change
+  end
+end

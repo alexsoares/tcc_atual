@@ -1,0 +1,10 @@
+<h1 align=center> Como você avalia este lugar</h1>
+<br/>
+     <%= form_tag new_place_path , :remote => true do %>
+      <p>
+        <%= radio_button_tag(:nota, "10") %>
+        <%= label_tag(:age_child, "I am younger than 21") %>
+      <p>
+      <%= submit_tag "Avaliar", class: "btn btn-large btn-primary" %>
+    <% end %>
+

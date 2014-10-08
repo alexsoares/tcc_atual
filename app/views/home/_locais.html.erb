@@ -1,11 +1,11 @@
     <%@client = GooglePlaces::Client.new("AIzaSyAJmHMNL_ElGdY9YguNoZOS0qw-uYfz_fY")%>
    <%@spot_id = params[:spot_id]%>
-    <%@client = @client.spots(current_user.pessoa.latitude,current_user.pessoa.longitude, :types => [interesse.to_s])%>
+    <%@client = @client.spots(current_user.pessoa.latitude,current_user.pessoa.longitude, :types => [interesse.to_s], :radius => 500)%>
 <% if @client.present? %>
   <ul>
     <%@client.each do |spot|%>
       <%= hidden_field_tag "search_box_geocoding", "#{spot.lat}" %>
-      <li><%= link_to "#{spot.name}", map_release_path(:lat => spot.lat, :lng => spot.lng, :nome => spot.name, :endereco => spot.vicinity), {:id => "submit_button_geocoding", :remote => true}  %></li>
+      <li><%= link_to "#{spot.name}", map_release_path(:lat => spot.lat, :lng => spot.lng, :nome => spot.name, :endereco => spot.vicinity), {:class => "addmarker", :remote => true}  %></li>
       
     <%end%>
  

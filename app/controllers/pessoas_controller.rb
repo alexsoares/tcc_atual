@@ -36,7 +36,9 @@ class PessoasController < ApplicationController
   def create
     @pessoa = Pessoa.new(pessoa_params)
     @pessoa.user_id = current_user.id
-
+    endereco = BuscaEndereco.cep(@pessoa.cep)
+    endereco_montado = "#{endereco[:tipo_logradouro]} #{endereco[:logradouro]}, #{endereco[:bairro]} - #{endereco[cidade]}"
+    @pessoa.endereco = endereco_montado
     respond_to do |format|
       if @pessoa.save
         format.html { redirect_to @pessoa, notice: 'Pessoa was successfully created.' }

@@ -2,9 +2,16 @@
 class HomeController < ApplicationController
   before_action :authenticate_user!
   def index
-    
+  	
   end
 
+  def teste
+    @pessoa = Pessoa.where(:id => current_user.pessoa)
+   
+    respond_to do |format|
+     format.js 
+    end	
+  end
 
   def locais
 
@@ -20,6 +27,7 @@ class HomeController < ApplicationController
   end
 
   def map_release
+
     @nome = params[:nome]
     @rua = params[:endereco]
     @latitude = params[:lat]

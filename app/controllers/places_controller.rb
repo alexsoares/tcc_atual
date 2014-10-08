@@ -21,6 +21,19 @@ class PlacesController < ApplicationController
   def edit
   end
 
+  def new_place
+  @place = Place.new
+  @place.nome = params[:nome]
+  @place.pessoa_id = params[:pessoa]
+  @place.nota = params[:nota]
+  respond_to do |format|
+    if @place.save  
+        format.html { redirect_to current_user.pessoa, notice: 'Avaliação was successfully created.' }
+        format.js   
+    end
+  end
+  end
+
   # POST /places
   # POST /places.json
   def create

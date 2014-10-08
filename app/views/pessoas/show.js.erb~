@@ -1,3 +1,43 @@
-$('#geocoding_fields').show();
-$('#geocoding').addClass('active');
+ <script>
+$( document ).ready(function() {
+var map;
 
+function initialize() {
+var mapOptions = {
+          center: new google.maps.LatLng(-22.90556, -47.06083),
+          zoom: 15,
+          mapTypeId: google.maps.MapTypeId.NORMAL,
+          panControl: true,
+          scaleControl: false,
+          streetViewControl: true,
+          overviewMapControl: true
+        };
+        // initializing map
+        map = new google.maps.Map(document.getElementById("map-canvas"),mapOptions);
+        
+   // geocoding 
+      var geocoding  = new google.maps.Geocoder();
+      $("#limpar").click(function(){
+	document.getElementById("limpar").disabled = true;
+	document.getElementById("locais").disabled = false;
+	$('#content').html('');
+	$('#lista').html(''); 
+      });
+      $("#locais").click(function(){
+	document.getElementById("limpar").disabled = false;
+	document.getElementById("locais").disabled = true;
+        
+      });
+      $("#submit_button_geocoding").click(function(){
+        codeAddress(geocoding);
+      });
+      $("#submit_button_reverse").click(function(){
+        codeLatLng(geocoding);
+      });
+      
+ setTimeout(function(){$('#sugestion').modal()}, 3000);
+}
+
+
+});
+</script>

@@ -1,0 +1,4 @@
+$('#myModalLabel').html("<%= @nome %>");
+$('.modal-body').html("<%= escape_javascript(render :partial => '/home/map_release')%>");
+$('#myModal').modal();
+

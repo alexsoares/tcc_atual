@@ -5,7 +5,7 @@ class Pessoa < ActiveRecord::Base
   has_and_belongs_to_many :interesses
   geocoded_by :endereco
   after_validation :geocode
-
+  has_many :places
 protected
   def possui_user?
     user = current_user.pessoa.present?

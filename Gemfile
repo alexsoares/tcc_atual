@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+gem 'pry'
 ruby '2.1.2'
 gem 'rails', '4.1.6'
 gem 'sqlite3', '~> 1.3.8'

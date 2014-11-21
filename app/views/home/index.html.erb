@@ -1,8 +1,11 @@
+<h2>Bem vindo ao sistema de Geolocalização GEOSIS</h2>
+
 <%if user_signed_in?%>
 <% if current_user.pessoa.present?%>  
 <div class ='local'><br/><br/><br/><br/>
-<p>Sistema destinado a localizar estabelecimentos de interesses, próximos a sua localização pré-cadastrada.</p>
+<p align=center>
 <%= ("#{link_to 'Clique Aqui', current_user.pessoa, :class => 'btn btn-primary'}").html_safe %>
+</p>
 </div>
 
 <%else%>

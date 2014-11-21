@@ -2,7 +2,7 @@
 class HomeController < ApplicationController
   before_action :authenticate_user!
   def index
-  	
+  	session[:i] = 0
   end
 
   def teste
@@ -12,6 +12,13 @@ class HomeController < ApplicationController
      format.js 
     end	
   end
+
+  def my_places
+    respond_to do |format|               
+      format.js
+    end
+  end
+
 
   def locais
 

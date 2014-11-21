@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :avaliacaos
 
  
-
+  get "home/my_places" => 'home#my_places', :as => :my_places
   resources :interesses
   post "places/new_place" => 'places#new_place', :as => :new_place
   resources :pessoas

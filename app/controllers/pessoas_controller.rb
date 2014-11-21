@@ -17,6 +17,7 @@ class PessoasController < ApplicationController
     end
   end
 
+
   # GET /pessoas/new
   def new
     if current_user.pessoa.present?
@@ -36,12 +37,12 @@ class PessoasController < ApplicationController
   def create
     @pessoa = Pessoa.new(pessoa_params)
     @pessoa.user_id = current_user.id
-    endereco = BuscaEndereco.cep(@pessoa.cep)
-    endereco_montado = "#{endereco[:tipo_logradouro]} #{endereco[:logradouro]}, #{endereco[:bairro]} - #{endereco[cidade]}"
+    endereco = BuscaEndereco.cep(@pessoa.cep.to_i)
+    endereco_montado = "#{endereco[:tipo_logradouro]} #{endereco[:logradouro]}, #{endereco[:bairro]} - #{endereco[:cidade]}"
     @pessoa.endereco = endereco_montado
     respond_to do |format|
       if @pessoa.save
-        format.html { redirect_to @pessoa, notice: 'Pessoa was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Pessoa was successfully created.' }
         format.json { render :show, status: :created, location: @pessoa }
       else
         format.html { render :new }
@@ -82,6 +83,6 @@ class PessoasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pessoa_params
-      params.require(:pessoa).permit(:nome, :idade, :endereco, :user_id, :interess_ids => [])
+      params.require(:pessoa).permit(:nome, :idade, :endereco, :cep, :numero, :user_id, :interess_ids => [])
     end
 end

@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   resources :avaliacaos
 
  
-
+  get "home/places" => 'home#places', :as => :places
   resources :interesses
-  post "place/new_place" => 'place#new_place', :as => :new_place
+  post "places/new_place" => 'places#new_place', :as => :new_place
   resources :pessoas
   get "home/new_release" => 'home#new_release', :as => :new_release
   get "/home", to: "pages#home", as: "home"

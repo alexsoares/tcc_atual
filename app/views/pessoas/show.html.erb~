@@ -1,38 +1,5 @@
-<p>
-  <strong>Nome:</strong>
-  <%= @pessoa.nome %>
-</p>
-<p>
-  <strong>Idade:</strong>
-  <%= @pessoa.idade %>
-</p>
-<p>
-  <strong>Endereco:</strong>
-  <%= @pessoa.endereco %>
-</p>
-    <%= hidden_field_tag "search_box_geocoding", "#{current_user.pessoa.endereco}" %>
-
-    <br/>
-    <br/>
-    <div id="map-container">
-	<div id="map-canvas"></div>
-    </div>
-    <br/>
-      <%= form_tag(home_tabs_path, :method => 'get', :remote => true, :'data-update-target' => 'update-   container') do %>
-       <p>
-       <%= submit_tag 'Localizar locais proximos', :disable_with => 'Please wait...',:id => 'locais', :class => 'btn btn-primary' %>
-       <button id = "limpar" type="button" disabled class = 'btn btn-primary' >Limpar busca</button>
-       </p>
-      <% end %> 
-  <div class = 'local' >
-    <ul id='lista' class="nav nav-tabs" role="tablist">
-
-    </ul>
-    <div id = 'content' class="tab-content">
-    </div>
-  </div>
-
 <script>
+
 $( document ).ready(function() {
   var mapOptions = {
           center: new google.maps.LatLng(-22.90556, -47.06083),
@@ -49,15 +16,17 @@ $( document ).ready(function() {
         
    // geocoding 
       var geocoding  = new google.maps.Geocoder();
-      $("#limpar").click(function(){
-	document.getElementById("limpar").disabled = true;
+      $("#teste").click(function(){
+	document.getElementById("teste").disabled = true;
 	document.getElementById("locais").disabled = false;
 	$('#content').html('');
 	$('#lista').html(''); 
       });
       $("#locais").click(function(){
-	document.getElementById("limpar").disabled = false;
+	document.getElementById("teste").disabled = false;
 	document.getElementById("locais").disabled = true;
+
+
         
       });
       $("#submit_button_geocoding").click(function(){
@@ -67,10 +36,57 @@ $( document ).ready(function() {
         codeLatLng(geocoding);
       });
   
- $('#sug-body').("<%= escape_javascript(render :partial => '/home/sugestao')%>");
+ $('#sug-body').html("<%= escape_javascript(render :partial => '/home/sugestao')%>");
  setTimeout(function(){$('#myModalSug').modal();}, 1000);  
  setTimeout(function(){codeAddress(geocoding)}, 500);
 
+$('#nao').click(function() {
+ setTimeout(function(){
+  <% session[:i] = session[:i].to_i + 1 %>
+  $('#sug-body').html("<%= escape_javascript(render :partial => '/home/sugestao')%>");
+  $('#myModalSug').modal();
+}, 10000);  
+})
+ 
 });
 
 </script>
+<p>
+  <strong>Nome:</strong>
+  <%= @pessoa.nome %>
+</p>
+<p>
+  <strong>Idade:</strong>
+  <%= @pessoa.idade %>
+</p>
+<p>
+  <strong>Endereco:</strong>
+  <%= @pessoa.endereco %>
+</p>
+<%= link_to 'Minhas avaliações', my_places_path, :class => "btn btn-primary btn-lg", :remote=>true%>
+
+    <%= hidden_field_tag "search_box_geocoding", "#{current_user.pessoa.endereco}" %>
+
+    <br/>
+    <br/>
+    <div id="map-container">
+	<div id="map-canvas"></div>
+    </div>
+    <br/>
+      <%= form_tag(home_tabs_path, :method => 'get', :remote => true, :'data-update-target' => 'update-   container') do %>
+       <p>
+       <%= submit_tag 'Localizar locais proximos', :disable_with => 'Please wait...',:id => 'locais', :class => 'btn btn-primary' %>
+ <%= link_to('Limpar', '#', html_options = {:remote => true, :id => 'teste', :class => 'btn btn-primary'}) %>
+       </p>
+      <% end %> 
+
+  <div class = 'local' >
+    <ul id='lista' class="nav nav-tabs" role="tablist">
+
+    </ul>
+    <div id = 'content' class="tab-content">
+    </div>
+  </div>
+
+
+

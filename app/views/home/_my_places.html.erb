@@ -1,0 +1,24 @@
+<ul>
+<% current_user.pessoa.places.each do |place| %>
+  <li>
+      <b>Local:</b>
+      <%= "#{place.nome} " %><br/>
+      <b>Avaliação:</b>
+      <% nota = (place.nota).to_i %> 
+      <% if nota == 10 or nota == 9 %>
+        <%= image_tag('estrelas-5.gif', size: '65x65') %>
+      <% else %>
+      <% if nota == 8 or nota == 7 %>
+        <%= image_tag('4estrelas.png', size: '65x65') %>
+      <% else %>
+      <% if nota == 6 or nota == 5 %>
+        <%= image_tag('3estrelas.png', size: '65x65') %>
+
+     <%end%>
+     <%end%>
+     <%end%>	
+
+  </li>
+<%end%>
+</ul>
+

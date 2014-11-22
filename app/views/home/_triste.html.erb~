@@ -1,0 +1,7 @@
+
+<p align=center>
+<%= image_tag('emoticon-triste.jpg', size: "100x100") %>
+</p>
+<br/>
+<p>Esta sugestão será novamente exibida a vc</p>
+

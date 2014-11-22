@@ -23,8 +23,7 @@ $( document ).ready(function() {
 	$('#lista').html(''); 
       });
       $("#locais").click(function(){
-	document.getElementById("teste").disabled = false;
-	document.getElementById("locais").disabled = true;
+
 
 
         
@@ -37,17 +36,27 @@ $( document ).ready(function() {
       });
   
  $('#sug-body').html("<%= escape_javascript(render :partial => '/home/sugestao')%>");
- setTimeout(function(){$('#myModalSug').modal();}, 1000);  
+ 
+
+ setTimeout(function(){$('#myModalSug').modal();
+
+}, 1000);  
  setTimeout(function(){codeAddress(geocoding)}, 500);
 
 $('#nao').click(function() {
- setTimeout(function(){
-  <% session[:i] = session[:i].to_i + 1 %>
+$('#myModaltriste').modal();
+<% session[:i] = session[:i].to_i + 1 %>
+  $('#sug-bodyTriste').html("<%= escape_javascript(render :partial => '/home/triste')%>");
+})
+ 
+});
+
+$('#ok').click(function(){
+setTimeout(function(){
+  
   $('#sug-body').html("<%= escape_javascript(render :partial => '/home/sugestao')%>");
   $('#myModalSug').modal();
 }, 10000);  
-})
- 
 });
 
 </script>

@@ -21,18 +21,18 @@
   </div>
   <div class="field">
     <%= f.label :cep %><br>
-    <%= f.text_field :cep, 'data-provide'=>"typeahead", :placeholder => "Informe o CEP", :size => 20 %>
+    <%= f.text_field :cep, 'data-provide'=>"typeahead", :placeholder => "Informe o CEP (Somente Nº)", :size => 20 %>
   </div>
   <div class="field">
-    <%= f.label :numero %><br>
-    <%= f.text_field :numero, 'data-provide'=>"typeahead", :placeholder => "Nº", :size => 20 %>
+    <%= f.label :numero, "Nº da residencia" %><br>
+    <%= f.text_field :numero, 'data-provide'=>"typeahead", :placeholder => "Nº da residencia", :size => 20 %>
   </div>
 <table class="tabelas">
 <th colspan="2" style=" font-size: large; color: blue">Interesses</th>
 <% Interess.all.in_groups_of(5, false) do |row_interesses| %>
 <tr>
 <% row_interesses.each do |interesse| %>
-<td><%= check_box_tag "pessoa[interess_ids][]", interesse.id, @pessoa.interesses.include?(interesse) %> <%= interesse.descricao %></td>
+<td width="30%"><%= check_box_tag "pessoa[interess_ids][]", interesse.id, @pessoa.interesses.include?(interesse) %> <%= "#{interesse.descricao}"%></td>
 <% end %>
 </tr>
 <%end%>

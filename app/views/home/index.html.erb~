@@ -3,12 +3,13 @@
 <%if user_signed_in?%>
 <% if current_user.pessoa.present?%>  
 <div class ='local'><br/><br/><br/><br/>
-<p>
+<p align=center>
 <%= ("#{link_to 'Clique Aqui', current_user.pessoa, :class => 'btn btn-primary'}").html_safe %>
 </p>
 </div>
 
 <%else%>
+<p><%= "Bem vindo #{current_user.pessoa.nome}" %></p>
 <p><%= ("Realize o cadastro. #{link_to "Clique Aqui", new_pessoa_path}").html_safe%></p>
 <%end%>
 <%end%>
